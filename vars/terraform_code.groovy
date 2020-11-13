@@ -5,6 +5,7 @@ def call(){
     tools {
         terraform 'terraform07'
     }
+    
     stages {
 
         stage('Init') {
@@ -15,14 +16,17 @@ def call(){
 
         stage('Plan') {
             steps {
-                sh "terraform plan"
+                withAWS(credentials: 'awskeys',region: 'useast-1'){
+                    
+                sh "terraform plan"}
             }
         }
     
 
         stage('Apply') {
             steps {
-                sh "terraform apply"
+                withAWS(credentials: 'awskeys',region: 'useast-1'){
+                sh "terraform apply"}
             }
         }
     }

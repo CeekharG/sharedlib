@@ -2,7 +2,9 @@ def call(){
 
     pipeline {
     agent any
-    tool name: 'terraform07', type: 'terraform'
+    tools {
+        terraform 'terraform07'
+    } 
     stages {
         stage('Plan') {
             steps {
